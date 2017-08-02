@@ -50,6 +50,7 @@ int main()
   char nans1;
 
   while(!checkWin(newmatrix)){
+    
     cout << "Make your move Player, 1" << endl;
     cin >> ans1;
     
@@ -60,7 +61,8 @@ int main()
           i = 0;}}
     taken[r] = ans1;
     r++;
-
+    tie++;
+   
     positions(ans1, newmatrix, symb1);
     cout << "----------------------------" << endl;
     printM(newmatrix);
@@ -72,16 +74,20 @@ int main()
        cout << "----------------------------" << endl;
        cout << " *** Player 1 Wins! ***" << endl;
        break;
-    }    
+    }
+    if(tie == 9)
+      break;
+
     cout << "Make your move, Player 2" << endl;
     cin >> ans2;
-    for(int i = 0; i < 8; i++){
+    for(int i = 0; i <= 8; i++){
       while(taken[i] == ans2){
           cout << "This position is already taken! Please choose an available position: ";
           cin >> ans2;
           i = 0;}}
     taken[r] = ans2;
     r++;
+    tie++;
     positions(ans2, newmatrix, symb2);
     cout << "----------------------------" << endl;
     printM(newmatrix);
@@ -96,9 +102,11 @@ int main()
     }
     
   }
+  if(tie == 9 && (!checkWin(newmatrix)))
+   cout << "It's a tie!" << endl;
   cout << "Moves" << endl;
   for(int i = 0; i < 9; i++)
-    cout << taken[i] << endl;
+    cout << taken[i];
     
 
   
