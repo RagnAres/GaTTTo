@@ -1,4 +1,4 @@
 # GaTTTo
-a Tic tac toe in C++
+a very simple tic tac toe in C++
 
-2-player only. Still working on a few things...
+Two-player only for now. I plan on adding more stuff in the future (adding AI, for example...)
