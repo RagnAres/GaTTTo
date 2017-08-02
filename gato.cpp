@@ -6,7 +6,6 @@ void printM(char matX[7][11]);
 bool checkWin(char matX[7][11]);
 char selectSymb();
 char positions(char pos, char matX[7][11], char mark);
-int  takenList(int num);
 
 int main()
 {
@@ -19,8 +18,7 @@ int main()
                            ' ', '4',' ', '|', ' ', '5',' ','|',' ', '6',' ',
                            '-', '-','-', '|', '-', '-','-','|','-', '-','-',
                            ' ', '7',' ', '|', ' ', '8',' ','|',' ', '9',' ',
-                           ' ', ' ',' ', '|', ' ', ' ',' ','|',' ', ' ',' '};
-   
+                           ' ', ' ',' ', '|', ' ', ' ',' ','|',' ', ' ',' '};   
 
   cout << "----------------------------" << endl;
   cout << " *** TIC TAC TOE *** " << endl;
@@ -46,19 +44,18 @@ int main()
 
   int r = 0;
   bool isTaken;
-  char taken[9] = {};
-  char nans1;
+  char taken[9] = {}; // needed to avoid players choosing an already taken spot
 
   while(!checkWin(newmatrix)){
     
-    cout << "Make your move Player, 1" << endl;
+    cout << "Make your move, Player 1" << endl;
     cin >> ans1;
     
     for(int i = 0; i < 8; i++){
       while(taken[i] == ans1){
           cout << "This position is already taken! Please choose an available position: ";
           cin >> ans1;
-          i = 0;}}
+          i = 0;}} // this is needed! remove it and see for yourself...
     taken[r] = ans1;
     r++;
     tie++;
@@ -107,8 +104,6 @@ int main()
   cout << "Moves" << endl;
   for(int i = 0; i < 9; i++)
     cout << taken[i];
-    
-
   
   cout << endl;
   cout << "----------------------------" << endl;
@@ -118,7 +113,6 @@ int main()
   
   cout << endl;
   return 0;
-
 }
 // Prints the matrix, which is the "game board"
 void printM(char matX[7][11])
@@ -156,6 +150,7 @@ char selectSymb()
      selectSymb();}
 
 }
+// Check if we have a winner. The relevant matrix positions are checked if they match. Returns true when there is a match and the game ends. Returning false allows the game to keep going.
 bool checkWin(char matX[7][11])
 {
    if((matX[1][1] == matX[1][5] && matX[1][1] == matX[1][9]) || (matX[1][1] == matX[3][1] && matX[1][1] == matX[5][1])
